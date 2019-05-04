@@ -1,0 +1,29 @@
+﻿<launch>
+    <!--
+    Test the camera threshold
+    -->
+
+    <!--
+    Parameters
+    -->
+
+    <rosparam file="$(find sailing_robot)/launch/parameters/default.yaml" command="load"/>
+
+    <rosparam file="$(find sailing_robot)/launch/parameters/calibration_blackpython.yaml" ns="/calibration" command="load"/>
+    <rosparam file="$(find sailing_robot)/launch/parameters/sailsettings_blackpython.yaml" command="load"/>
+    <rosparam file="$(find sailing_robot)/launch/parameters/servos_blackpython.yaml" command="load"/>
+
+    <rosparam file="$(find sailing_robot)/launch/parameters/zju_qzlake_waypoints.yaml" command="load"/>
+    
+    <param name="log_name" value="test" />
+
+    <!--
+    Nodes
+    -->
+    
+    <node name = "gps" pkg='pixhawk' type="serial_node_imu_gps" respawn="true"/>
+    <node name="camera" pkg='sailing_robot' type="sensor_camera_threshold" respawn="true"/>
+
+
+
+ </launch>
